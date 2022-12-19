@@ -20,9 +20,17 @@ namespace TechnicalTest_Vaultex.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var getEmployees = await _employeesService.GetEmployees();
+            try
+            {
+                var getEmployees = await _employeesService.GetEmployees();
 
-            return View(getEmployees);
+                return View(getEmployees);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
         }
 
         public IActionResult Privacy()

@@ -19,15 +19,22 @@ namespace Vaultex_BLL.Services
 
         public async Task<List<EmployeeDTO>> GetEmployees()
         {
-            var getData = await _repository.GetAllAsync();
-
-            return getData.Select(a => new EmployeeDTO
+            try
             {
-                OrganisationNumber = a.OrganisationNumber,
-                FirstName = a.FirstName,
-                LastName = a.LastName,
+                var getData = await _repository.GetAllAsync();
 
-            }).ToList();
+                return getData.Select(a => new EmployeeDTO
+                {
+                    OrganisationNumber = a.OrganisationNumber,
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
+
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
 
